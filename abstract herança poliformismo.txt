@@ -1,0 +1,102 @@
+void main(){
+  
+  print ('interfaces herança e poliformismo');
+  
+  //interfaces
+  PessoaET et = PessoaET();
+  print(et.comunicar());
+  
+  PessoaNaoET naoEt = PessoaNaoET();
+  print(naoEt.comunicar());
+  
+  //herança
+  Pai guima = Pai();
+  print('Guima');
+  print(guima.altura());
+  
+  Filho wander = Filho(); 
+  print('Wander');
+  print(wander.altura());
+  
+  //poliformismo  
+  //instancio um objeto boleto que recebe do PagarComBboleto
+  Pagamento boleto = PagarComBoleto();
+  boleto.pagar(); //executo o método
+  
+  //como poliformismo eu posso instanciar meu objeto recebendo da nova classe
+  boleto = PagarComPix();
+  boleto.pagar();
+  
+  
+  
+  
+ 
+  
+  
+}
+
+//interface
+abstract class Pessoa{
+  
+  //método
+  String comunicar(); // aqui voce nao realiza a implementação ou seja nao diria como ela iria falar
+}
+
+// a classe PessoaET é orbigado a seguir o que foi definido na abstract classe Pessoa
+class PessoaET implements Pessoa{
+  
+  //método
+  // aqui sim eu defino o que vai acontecer ou seja a implementação
+  String comunicar(){
+    
+    return 'Ola mundo!';
+  } 
+}
+
+class PessoaNaoET implements Pessoa{
+  
+  //método
+  String comunicar(){
+    return 'bom dia';
+  }
+}
+
+
+//herança
+class Pai{
+  
+  //método
+  double altura(){
+    
+    return 1.70;
+  }
+}
+
+//extends ou seja ele herda características da classe Pai
+//no caso herda a altura do método
+class Filho extends Pai{
+  
+  // nesse caso nao estou trabalhando com outras variáveis
+}
+
+//poliformismo
+
+abstract class Pagamento{
+  
+  // apenas crie o método que devera ser respeitado por classes que implementa ou extende
+  void pagar();
+}
+
+class PagarComBoleto implements Pagamento{
+  
+  void pagar(){
+    print ('pagando com boleto');    
+  }
+}
+
+class PagarComPix implements Pagamento{
+  
+  void pagar(){
+    print('pagando com pix');
+  }
+}
